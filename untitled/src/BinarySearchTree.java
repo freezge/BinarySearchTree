@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class BinarySearchTree <K extends Comparable<K>, V> {
     BinarySearchTree(){}
     private Node rootNode;
@@ -124,7 +127,16 @@ public class BinarySearchTree <K extends Comparable<K>, V> {
     public int getSize(){
         return size;
     }
-    public Iterable<K> iterator(){
-        return null;
+    public Iterable<MyArray<K,V>> iterator(){
+        List<MyArray<K, V>> arr = new ArrayList<>();
+        inOrderTraversal(rootNode, arr);
+        return arr;
+    }
+    private void inOrderTraversal(Node node, List<MyArray<K, V>> arr) {
+        if (node != null) {
+            inOrderTraversal(node.left, arr);
+            arr.add(new MyArray<>(node.key, node.val));
+            inOrderTraversal(node.right, arr);
+        }
     }
 }
