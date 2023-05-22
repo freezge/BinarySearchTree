@@ -56,9 +56,43 @@ public class BinarySearchTree <K extends Comparable<K>, V> {
         return null;
     }
     public void delete(K key){
-
+        Node currentNode = rootNode;
+        if(get(key) == null)
+            return;
+        while(true) {
+            if(key.compareTo(currentNode.key) < 0)
+                currentNode = currentNode.left;
+            else if(key.compareTo(currentNode.key) > 0)
+                currentNode = currentNode.right;
+            else
+                break;
+        }
+        if(currentNode.left == null) {
+            currentNode.key = currentNode.right.key;
+            currentNode.val = currentNode.right.val;
+            currentNode.left = currentNode.right.left;
+            currentNode.right = currentNode.right.right;
+            size--;
+        }
+        else if(currentNode.right == null){
+            currentNode.key = currentNode.left.key;
+            currentNode.val = currentNode.left.val;
+            currentNode.right = currentNode.left.right;
+            currentNode.left = currentNode.left.left;
+            size--;
+        }
+        else {
+            Node buffNode = currentNode.left;
+            while(buffNode.left.left != null){
+                buffNode = buffNode.left;
+            }
+            currentNode.key = buffNode.left.key;
+            currentNode.val = buffNode.left.val;
+            buffNode.left = null;
+            size--;
+        }
     }
-    public  Iterable<K> iterator(){
+    public Iterable<K> iterator(){
         return null;
     }
 }
