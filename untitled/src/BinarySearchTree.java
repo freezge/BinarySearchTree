@@ -1,5 +1,6 @@
 public class BinarySearchTree <K extends Comparable<K>, V> {
-    private Node root;
+    private Node rootNode;
+    private int size;
     private class Node{
         private K key;
         private V val;
@@ -9,8 +10,38 @@ public class BinarySearchTree <K extends Comparable<K>, V> {
             this.val = val;
         }
     }
-    public void put(K key, V val){}
+    public void put(K key, V val){
+        Node currentNode = rootNode;
+        if (rootNode == null){
+            size++;
+            rootNode = new Node(key,val);
+            return;
+        }
+        while(true) {
+            if(key.compareTo(currentNode.key) < 0){
+                if (currentNode.left == null){
+                    currentNode.left = new Node(key, val);
+                    size++;
+                    break;
+                }
+                currentNode = currentNode.left;
+            }
+            else if(key.compareTo(currentNode.key) > 0){
+                if(currentNode.right == null){
+                    currentNode.right = new Node(key, val);
+                    size++;
+                    break;
+                }
+                currentNode = currentNode.right;
+            }
+            else {
+                currentNode.val = val;
+                break;
+            }
+        }
+    }
     public V get(K key){
+
         return null;
     }
     public void delete(K key){
