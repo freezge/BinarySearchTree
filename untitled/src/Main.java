@@ -18,5 +18,6 @@ public class Main {
         System.out.println(tree.get(8));
         System.out.println(tree.get(13));
         System.out.println(tree.get(18));
+        System.out.println(tree.getSize());
     }
 }

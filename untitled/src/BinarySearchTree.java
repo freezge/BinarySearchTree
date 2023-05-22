@@ -121,7 +121,9 @@ public class BinarySearchTree <K extends Comparable<K>, V> {
             size--;
         }
     }
-
+    public int getSize(){
+        return size;
+    }
     public Iterable<K> iterator(){
         return null;
     }
