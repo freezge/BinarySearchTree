@@ -41,7 +41,18 @@ public class BinarySearchTree <K extends Comparable<K>, V> {
         }
     }
     public V get(K key){
-
+        Node currentNode = rootNode;
+        while(currentNode != null){
+            if(key.compareTo(currentNode.key) < 0){
+                currentNode = currentNode.left;
+            }
+            else if(key.compareTo(currentNode.key) > 0){
+                currentNode = currentNode.right;
+            }
+            else{
+                return currentNode.val;
+            }
+        }
         return null;
     }
     public void delete(K key){
