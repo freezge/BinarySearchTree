@@ -1,4 +1,5 @@
 public class BinarySearchTree <K extends Comparable<K>, V> {
+    BinarySearchTree(){}
     private Node rootNode;
     private int size;
     private class Node{
@@ -56,42 +57,71 @@ public class BinarySearchTree <K extends Comparable<K>, V> {
         return null;
     }
     public void delete(K key){
-        Node currentNode = rootNode;
         if(get(key) == null)
             return;
+        if (size == 1){
+            rootNode = null;
+            return;
+        }
+        Node currentNode = rootNode;
+        Node parentNode = currentNode;
         while(true) {
-            if(key.compareTo(currentNode.key) < 0)
+            if(key.compareTo(currentNode.key) < 0){
+                parentNode = currentNode;
                 currentNode = currentNode.left;
-            else if(key.compareTo(currentNode.key) > 0)
+            }
+            else if(key.compareTo(currentNode.key) > 0){
+                parentNode = currentNode;
                 currentNode = currentNode.right;
+            }
             else
                 break;
         }
-        if(currentNode.left == null) {
+        if(currentNode.left == null && currentNode.right == null){
+            if(key.compareTo(parentNode.key) < 0){
+                parentNode.left = null;
+            }
+            else if(key.compareTo(parentNode.key) > 0){
+                parentNode.right = null;
+            }
+            size--;
+        }
+        else if(currentNode.left == null) {
             currentNode.key = currentNode.right.key;
             currentNode.val = currentNode.right.val;
-            currentNode.left = currentNode.right.left;
-            currentNode.right = currentNode.right.right;
+            if (currentNode.right.left != null)
+                currentNode.left = currentNode.right.left;
+            if (currentNode.right.right != null)
+                currentNode.right = currentNode.right.right;
+            else
+                currentNode.right = null;
             size--;
         }
         else if(currentNode.right == null){
             currentNode.key = currentNode.left.key;
             currentNode.val = currentNode.left.val;
-            currentNode.right = currentNode.left.right;
-            currentNode.left = currentNode.left.left;
+            if (currentNode.left.right != null)
+                currentNode.right = currentNode.left.right;
+            if (currentNode.left.left != null)
+                currentNode.left = currentNode.left.left;
+            else
+                currentNode.left = null;
             size--;
         }
         else {
-            Node buffNode = currentNode.left;
-            while(buffNode.left.left != null){
+            Node parentBuffNode = currentNode;
+            Node buffNode = currentNode.right;
+            while(buffNode.left != null){
+                parentBuffNode = buffNode;
                 buffNode = buffNode.left;
             }
-            currentNode.key = buffNode.left.key;
-            currentNode.val = buffNode.left.val;
-            buffNode.left = null;
+            currentNode.key = parentBuffNode.left.key;
+            currentNode.val = parentBuffNode.left.val;
+            parentBuffNode.left = null;
             size--;
         }
     }
+
     public Iterable<K> iterator(){
         return null;
     }
