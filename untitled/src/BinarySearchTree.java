@@ -155,8 +155,10 @@ public class BinarySearchTree <K extends Comparable<K>, V> {
         if (buffNode.left != null){
             a = consistValue(buffNode.left, value);
         }
-        if(buffNode.right != null){
-            a = consistValue(buffNode.right, value);
+        if (!a){
+            if(buffNode.right != null){
+                a = consistValue(buffNode.right, value);
+            }
         }
         return a;
     }

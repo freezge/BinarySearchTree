@@ -11,7 +11,10 @@ public class Main {
         tree.delete(10);//test
         tree.delete(8);//test
         tree.delete(15);//test
-        System.out.println(tree.consistValue("Sample3"));
+        System.out.println(tree.consistKey(10));
+        System.out.println(tree.consistValue("Sample1"));
+        System.out.println(tree.consistKey(3));
+        System.out.println(tree.consistValue("Sample4"));
 //        System.out.println(tree.get(10));//test
 //        System.out.println(tree.get(5));//test
 //        System.out.println(tree.get(15));//test
@@ -20,8 +23,8 @@ public class Main {
 //        System.out.println(tree.get(13));//test
 //        System.out.println(tree.get(18));//test
 //        System.out.println(tree.getSize());//test
-        for (MyArray i : tree.iterator()) {//test
-            System.out.println("key:" + i.getKey() + " value:" + i.getVal());
-        }
+//        for (MyArray i : tree.iterator()) {//test
+//            System.out.println("key:" + i.getKey() + " value:" + i.getVal());
+//        }
     }
 }
