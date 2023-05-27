@@ -8,9 +8,10 @@ public class Main {
         tree.put(8, "Sample5");//test
         tree.put(13, "Sample6");//test
         tree.put(18, "Sample7");//test
-//        tree.delete(10);//test
-//        tree.delete(8);//test
-//        tree.delete(15);//test
+        tree.delete(10);//test
+        tree.delete(8);//test
+        tree.delete(15);//test
+        System.out.println(tree.consistValue("Sample3"));
 //        System.out.println(tree.get(10));//test
 //        System.out.println(tree.get(5));//test
 //        System.out.println(tree.get(15));//test

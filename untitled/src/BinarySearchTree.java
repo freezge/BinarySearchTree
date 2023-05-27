@@ -1,3 +1,5 @@
+import com.sun.jdi.Value;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -138,5 +140,24 @@ public class BinarySearchTree <K extends Comparable<K>, V> {
             arr.add(new MyArray<>(node.key, node.val));//add the key+value to the list
             inOrderTraversal(node.right, arr);//right subtree
         }
+    }
+    public boolean consistKey(K key){
+        return get(key) != null;
+    }
+    public boolean consistValue(V value){
+        return consistValue(rootNode, value);
+    }
+    private boolean consistValue(Node buffNode, V value){
+        boolean a = false;
+        if (buffNode.val.equals(value)){
+            return true;
+        }
+        if (buffNode.left != null){
+            a = consistValue(buffNode.left, value);
+        }
+        if(buffNode.right != null){
+            a = consistValue(buffNode.right, value);
+        }
+        return a;
     }
 }
